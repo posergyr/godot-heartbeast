@@ -12,7 +12,7 @@ _global_script_classes=[ {
 "base": "Area2D",
 "class": "Ladder",
 "language": "GDScript",
-"path": "res://Scripts/Ladder.gd"
+"path": "res://Scripts/ladder.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "Player",
@@ -22,7 +22,7 @@ _global_script_classes=[ {
 "base": "Resource",
 "class": "PlayerStatsData",
 "language": "GDScript",
-"path": "res://Scripts/PlayerStats.gd"
+"path": "res://Scripts/player_stats.gd"
 } ]
 _global_script_class_icons={
 "Ladder": "",
@@ -33,7 +33,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Test project"
-run/main_scene="res://Scenes/World.tscn"
+run/main_scene="res://Scenes/world.tscn"
 config/icon="res://Sprites/Godot_icon.png"
 
 [display]
