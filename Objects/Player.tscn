@@ -5,7 +5,7 @@
 [ext_resource path="res://Datas/DefaultPlayerStats.tres" type="Resource" id=3]
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 10, 15.9722 )
+extents = Vector2( 9, 15.2778 )
 
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 2
@@ -13,7 +13,7 @@ script = ExtResource( 2 )
 statsData = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, 0.5 )
+position = Vector2( -9.53674e-07, 1 )
 scale = Vector2( 1, 0.719999 )
 shape = SubResource( 4 )
 
@@ -27,3 +27,9 @@ playing = true
 current = true
 smoothing_enabled = true
 smoothing_speed = 3.0
+
+[node name="LadderCheck" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 0, 18 )
+collide_with_areas = true
+collide_with_bodies = false
