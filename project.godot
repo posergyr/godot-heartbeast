@@ -17,7 +17,7 @@ _global_script_classes=[ {
 "base": "KinematicBody2D",
 "class": "Player",
 "language": "GDScript",
-"path": "res://Sprites/Player.gd"
+"path": "res://Scripts/player.gd"
 }, {
 "base": "Resource",
 "class": "PlayerStatsData",
@@ -34,7 +34,7 @@ _global_script_class_icons={
 
 config/name="Test project"
 run/main_scene="res://Scenes/world.tscn"
-config/icon="res://Sprites/Godot_icon.png"
+config/icon="res://Sprites/godot_icon.png"
 
 [display]
 

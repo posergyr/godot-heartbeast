@@ -1,6 +1,6 @@
 [gd_scene load_steps=30 format=2]
 
-[ext_resource path="res://Scenes/tileMap.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/tile_map.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/world.gd" type="Script" id=2]
 [ext_resource path="res://Tiles/tiles_packed.png" type="Texture" id=3]
 [ext_resource path="res://Objects/walking_enemy.tscn" type="PackedScene" id=4]
@@ -243,7 +243,7 @@ resource_local_to_scene = true
 script = ExtResource( 2 )
 
 [node name="Player" parent="." instance=ExtResource( 7 )]
-position = Vector2( 216, 81 )
+position = Vector2( 216, 77.9995 )
 z_index = 10
 
 [node name="TileMap" parent="." instance=ExtResource( 1 )]

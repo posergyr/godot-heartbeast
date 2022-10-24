@@ -6,17 +6,17 @@ enum {
 	CLIMB,
 }
 
-export(Resource) var statsData
+export(Resource) var statsData = preload("res://Datas/default_player_stats.tres") as PlayerStatsData
 
 var velocity = Vector2.ZERO
 var state = MOVE
+var double_jump = 1
 
 onready var animatedSprite = $AnimatedSprite
 onready var ladderCheck = $LadderCheck
 
 func _ready():
 	animatedSprite.frames = load("res://Resources/player_blue_skin.tres")
-
 
 func _physics_process(_delta):
 	var input = Vector2.ZERO
@@ -44,12 +44,18 @@ func move_state(input):
 		animatedSprite.flip_h = input.x > 0
 	
 	if is_on_floor():
+		double_jump = statsData.DOUBLE_JUMPS
+		
 		if Input.is_action_pressed("ui_up"):
 			velocity.y = statsData.JUMP_FORCE
 	else:
 		animatedSprite.animation = "Jump"
 		if Input.is_action_just_released("ui_up") and velocity.y < statsData.JUMP_RELEASE_FORCE:
 			velocity.y = statsData.JUMP_RELEASE_FORCE
+		
+		if Input.is_action_just_pressed("ui_up") and double_jump > 0:
+			velocity.y = statsData.JUMP_FORCE
+			double_jump -= 1
 			
 	if velocity.y > 0:
 		velocity.y += statsData.ADDITONAL_GRAVITY
@@ -71,7 +77,7 @@ func climb_state(input):
 	else:
 		animatedSprite.animation = "Idle"
 	
-	velocity = input * 50
+	velocity = input * statsData.CLIMB_SPEED
 	velocity = move_and_slide(velocity, Vector2.UP)
 
 

@@ -9,3 +9,5 @@ export(int) var ACCELERATION = 10
 export(int) var FRICTION = 10
 export(int) var GRAVITY = 5
 export(int) var ADDITONAL_GRAVITY = 5
+export(int) var CLIMB_SPEED = 50
+export(int) var DOUBLE_JUMPS = 1
