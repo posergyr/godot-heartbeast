@@ -11,12 +11,15 @@ export(Resource) var statsData = preload("res://Datas/default_player_stats.tres"
 var velocity = Vector2.ZERO
 var state = MOVE
 var double_jump = 1
+var buffered_jump = false
 
-onready var animatedSprite = $AnimatedSprite
-onready var ladderCheck = $LadderCheck
+onready var animatedSprite: = $AnimatedSprite
+onready var ladderCheck: = $LadderCheck
+onready var jumpBufferTimer: = $JumpBufferTimer
 
 func _ready():
 	animatedSprite.frames = load("res://Resources/player_blue_skin.tres")
+
 
 func _physics_process(_delta):
 	var input = Vector2.ZERO
@@ -44,10 +47,11 @@ func move_state(input):
 		animatedSprite.flip_h = input.x > 0
 	
 	if is_on_floor():
-		double_jump = statsData.DOUBLE_JUMPS
+		double_jump = statsData.DOUBLE_JUMPS 
 		
-		if Input.is_action_pressed("ui_up"):
+		if Input.is_action_pressed("ui_up") or buffered_jump:
 			velocity.y = statsData.JUMP_FORCE
+			buffered_jump = false
 	else:
 		animatedSprite.animation = "Jump"
 		if Input.is_action_just_released("ui_up") and velocity.y < statsData.JUMP_RELEASE_FORCE:
@@ -56,6 +60,10 @@ func move_state(input):
 		if Input.is_action_just_pressed("ui_up") and double_jump > 0:
 			velocity.y = statsData.JUMP_FORCE
 			double_jump -= 1
+			
+		if Input.is_action_just_pressed("ui_up"):
+			buffered_jump = true
+			jumpBufferTimer.start()
 			
 	if velocity.y > 0:
 		velocity.y += statsData.ADDITONAL_GRAVITY
@@ -104,3 +112,7 @@ func apply_friction():
 
 func apply_acceleration(amount):
 	velocity.x = move_toward(velocity.x, statsData.MAX_SPEED * amount, statsData.ACCELERATION)
+
+
+func _on_JumpBufferTimer_timeout():
+	buffered_jump = false
