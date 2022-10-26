@@ -114,5 +114,5 @@ func apply_acceleration(amount):
 	velocity.x = move_toward(velocity.x, statsData.MAX_SPEED * amount, statsData.ACCELERATION)
 
 
-func _on_JumpBufferTimer_timeout():
+func on_JumpBufferTimer_timeout():
 	buffered_jump = false
